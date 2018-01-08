@@ -3,16 +3,10 @@ import com.github.scribejava.core.builder.api.ClientAuthenticationType;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
 public class C3proApiDefinition extends DefaultApi20 {
+	private final String baseurl_auth;
 
-    protected C3proApiDefinition() {
-    }
-
-    private static class InstanceHolder {
-        private static final C3proApiDefinition INSTANCE = new C3proApiDefinition();
-    }
-
-    public static C3proApiDefinition instance() {
-        return InstanceHolder.INSTANCE;
+    protected C3proApiDefinition(String baseurl_auth) {
+    		this.baseurl_auth = baseurl_auth;
     }
 
 	@Override
@@ -23,12 +17,12 @@ public class C3proApiDefinition extends DefaultApi20 {
 
 	@Override
 	public String getAccessTokenEndpoint() {
-		return "http://localhost:8081/c3pro/auth";
+		return baseurl_auth+"/c3pro/auth";
 	}
 
 	@Override
 	protected String getAuthorizationBaseUrl() {
-		return "http://localhost:8082/oauth/authorize";
+		return baseurl_auth+"/c3pro/register";
 	}	
 	
 
